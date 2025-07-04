@@ -8,9 +8,9 @@ class Avaliacao extends Model
 {
     protected $fillable = ['aluno_id', 'disciplina_id', 'bimestre', 'numero', 'nota', 'observacao'];
 
-    public function aluno()
+    public function alunoTurma()
     {
-        return $this->belongsTo(Aluno::class);
+        return $this->belongsTo(AlunoTurma::class);
     }
 
     public function disciplina()

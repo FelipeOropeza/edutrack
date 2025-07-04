@@ -9,10 +9,10 @@ return new class extends Migration {
     {
         Schema::create('avaliacoes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('aluno_id')->constrained()->onDelete('cascade');
+            $table->foreignId('aluno_turma_id')->constrained('aluno_turma')->onDelete('cascade'); // <- referência à matrícula
             $table->foreignId('disciplina_id')->constrained()->onDelete('cascade');
             $table->tinyInteger('bimestre'); // 1 a 4
-            $table->tinyInteger('numero'); // 1 a 3 (ordem da avaliação)
+            $table->tinyInteger('numero'); // 1 a 3 (ordem da avaliação no bimestre)
             $table->decimal('nota', 5, 2);
             $table->text('observacao')->nullable();
             $table->timestamps();
