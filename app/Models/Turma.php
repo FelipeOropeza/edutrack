@@ -1,14 +1,11 @@
-<?php 
+<?php
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Turma extends Model
 {
-    use HasFactory;
-
     protected $fillable = ['nome', 'ano_letivo'];
 
     public function alunos()
@@ -21,5 +18,12 @@ class Turma extends Model
     public function disciplinas()
     {
         return $this->hasMany(Disciplina::class);
+    }
+
+    public function professores()
+    {
+        return $this->belongsToMany(Professor::class, 'professor_turma_disciplina')
+                    ->withPivot('disciplina_id')
+                    ->withTimestamps();
     }
 }

@@ -10,23 +10,12 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        // Usuário professor
-        User::updateOrCreate(
-            ['email' => 'professor@escola.com'],
+       User::updateOrCreate(
+            ['email' => 'diretoria@escola.com'],
             [
-                'name' => 'Professor João',
-                'password' => Hash::make('senha123'), // Senha segura
-                'role' => 'professor',
-            ]
-        );
-
-        // Usuário responsável
-        User::updateOrCreate(
-            ['email' => 'responsavel@escola.com'],
-            [
-                'name' => 'Responsável Maria',
+                'name' => 'Diretoria',
                 'password' => Hash::make('senha123'),
-                'role' => 'responsavel',
+                'role' => 'diretoria',
             ]
         );
     }

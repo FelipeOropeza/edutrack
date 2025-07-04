@@ -6,10 +6,10 @@ use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 #[Layout('layouts.professor')]
-class ProfessorDashboard extends Component
+class CadastroAluno extends Component
 {
     public function render()
     {
-        return view('livewire.professor-dashboard');
+        return view('livewire.cadastro-aluno');
     }
 }

@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Disciplina extends Model
 {
-    use HasFactory;
-
-    protected $fillable = ['nome', 'turma_id'];
+    protected $fillable = ['nome'];
 
     public function turma()
     {
@@ -19,5 +16,12 @@ class Disciplina extends Model
     public function avaliacoes()
     {
         return $this->hasMany(Avaliacao::class);
+    }
+
+    public function professores()
+    {
+        return $this->belongsToMany(Professor::class, 'professor_turma_disciplina')
+                    ->withPivot('turma_id')
+                    ->withTimestamps();
     }
 }

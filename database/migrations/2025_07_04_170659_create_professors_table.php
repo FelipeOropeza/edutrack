@@ -7,18 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('professors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('role', ['professor', 'responsavel', 'diretoria']);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            // Aqui pode adicionar campos específicos, exemplo: matrícula, telefone, etc.
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('professors');
     }
 };

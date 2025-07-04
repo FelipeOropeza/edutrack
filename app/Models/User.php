@@ -2,26 +2,26 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use Notifiable;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-    ];
+    protected $fillable = ['name', 'email', 'password', 'role'];
 
     protected $hidden = ['password'];
 
-    // Se for responsável, tem alunos
-    public function alunos()
+    // Relacionamento com Professor
+    public function professor()
     {
-        return $this->hasMany(Aluno::class, 'responsavel_id');
+        return $this->hasOne(Professor::class);
+    }
+
+    // Relacionamento com Responsavel
+    public function responsavel()
+    {
+        return $this->hasOne(Responsavel::class);
     }
 }

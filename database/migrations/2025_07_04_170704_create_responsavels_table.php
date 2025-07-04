@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('disciplinas', function (Blueprint $table) {
+        Schema::create('responsavels', function (Blueprint $table) {
             $table->id();
-            $table->string('nome'); // Ex: Matemática
-            $table->foreignId('turma_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            // Aqui pode adicionar campos específicos do responsável, telefone, endereço, etc.
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('disciplinas');
+        Schema::dropIfExists('responsavels');
     }
 };
