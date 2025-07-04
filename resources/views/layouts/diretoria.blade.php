@@ -16,6 +16,10 @@
             <a href="{{ route('dashboard') }}" class="hover:bg-blue-700 px-3 py-2 rounded transition">Dashboard</a>
             <a href="{{ route('cadastro.professor') }}" class="hover:bg-blue-700 px-3 py-2 rounded transition">Cadastrar
                 Professor</a>
+            <a href="{{ route('cadastro.turma') }}" class="hover:bg-blue-700 px-3 py-2 rounded transition">Cadastrar
+                Turma</a>
+            <a href="{{ route('cadastro.disciplina') }}" class="hover:bg-blue-700 px-3 py-2 rounded transition">Cadastrar
+                Disciplina</a>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Sair</a>
         </nav>
