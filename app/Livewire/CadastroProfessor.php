@@ -21,14 +21,8 @@ class CadastroProfessor extends Component
             'nome' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
-        ], [
-            'nome.required' => 'O nome é obrigatório.',
-            'email.required' => 'O email é obrigatório.',
-            'email.email' => 'O email deve ser um endereço de email válido.',
-            'email.unique' => 'Este email já está cadastrado.',
-            'password.required' => 'A senha é obrigatória.',
-            'password.min' => 'A senha deve ter pelo menos 6 caracteres.',
         ]);
+        
         $user = User::create([
             'name' => $this->nome,
             'email' => $this->email,
