@@ -11,8 +11,8 @@ class Turma extends Model
     public function alunos()
     {
         return $this->belongsToMany(Aluno::class, 'aluno_turma')
-                    ->withPivot('status')
-                    ->withTimestamps();
+            ->withPivot('status')
+            ->withTimestamps();
     }
 
     public function disciplinas()
@@ -20,10 +20,8 @@ class Turma extends Model
         return $this->hasMany(Disciplina::class);
     }
 
-    public function professores()
+    public function vinculos()
     {
-        return $this->belongsToMany(Professor::class, 'professor_turma_disciplina')
-                    ->withPivot('disciplina_id')
-                    ->withTimestamps();
+        return $this->hasMany(ProfessorTurmaDisciplina::class);
     }
 }

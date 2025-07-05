@@ -18,10 +18,9 @@ class Disciplina extends Model
         return $this->hasMany(Avaliacao::class);
     }
 
-    public function professores()
+    public function vinculos()
     {
-        return $this->belongsToMany(Professor::class, 'professor_turma_disciplina')
-                    ->withPivot('turma_id')
-                    ->withTimestamps();
+        return $this->hasMany(ProfessorTurmaDisciplina::class);
     }
+
 }
