@@ -1,7 +1,7 @@
 <div>
-    <div class="max-w-6xl mx-auto mt-8 flex gap-8 items-start" style="min-height: 500px;">
+    <div class="max-w-6xl mx-auto mt-8 flex gap-8 items-start">
         <!-- Formulário de cadastro -->
-        <section class="w-1/3 bg-white p-6 rounded shadow max-h-[500px] overflow-auto flex flex-col">
+        <section class="w-1/3 bg-white p-6 rounded shadow flex flex-col">
             <h2 class="text-2xl font-bold mb-6">Cadastrar Professor</h2>
 
             <form wire:submit.prevent="cadastrar" class="space-y-4 flex-grow">
@@ -48,7 +48,7 @@
             <input type="text" wire:model.live="search" placeholder="Buscar por nome ou email..."
                 class="w-full mb-4 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-            <ul class="space-y-3 max-h-[500px] overflow-auto">
+            <ul class="space-y-3 max-h-[400px] overflow-y-auto">
                 @forelse ($professores as $prof)
                     <li class="border rounded p-4 flex items-center justify-between hover:shadow-sm transition">
                         <div>
@@ -56,16 +56,27 @@
                             <p class="text-gray-600 text-sm">{{ $prof->user->email }}</p>
                             <p class="text-gray-500 text-xs uppercase tracking-wider">{{ $prof->user->role }}</p>
                         </div>
-                        <button wire:click="abrirModalVincular({{ $prof->id }})"
-                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold text-sm transition"
-                            title="Vincular este professor a uma turma">
-                            Vincular à Turma
-                        </button>
+
+                        {{-- Ações: Vincular e Visualizar --}}
+                        <div class="flex gap-2">
+                            <button wire:click="abrirModalVincular({{ $prof->id }})"
+                                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold text-sm transition"
+                                title="Vincular este professor a uma turma">
+                                Vincular à Turma
+                            </button>
+
+                            <a href="{{ route('professor.turmas', $prof->id) }}"
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded font-semibold text-sm transition"
+                                title="Ver turmas e disciplinas do professor">
+                                Visualizar
+                            </a>
+                        </div>
                     </li>
                 @empty
                     <li class="text-gray-500">Nenhum professor encontrado.</li>
                 @endforelse
             </ul>
+
         </section>
 
     </div>
