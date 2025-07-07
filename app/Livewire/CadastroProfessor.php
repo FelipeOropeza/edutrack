@@ -41,13 +41,6 @@ class CadastroProfessor extends Component
         $this->modalAberto = true;
     }
 
-    public function updatedTurmaId($turmaId)
-    {
-        // Se quiser filtrar disciplinas por turma, pode atualizar aqui
-        // Por enquanto, vamos carregar todas as disciplinas (já carregadas no mount)
-        // Exemplo: $this->disciplinas = Disciplina::where(...)->get();
-    }
-
     public function vincularTurmaDisciplina()
     {
         $this->validate([
