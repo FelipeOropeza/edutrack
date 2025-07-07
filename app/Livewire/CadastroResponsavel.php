@@ -2,6 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Models\Aluno;
+use App\Models\Responsavel;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -9,7 +13,7 @@ use Livewire\Component;
 class CadastroResponsavel extends Component
 {
     public $nome, $email;
-    public $alunos = []; // array temporário dos alunos
+    public $alunos = [];
     public $modalAberto = false;
 
     public $nomeAluno, $dataNascimentoAluno;
@@ -37,9 +41,24 @@ class CadastroResponsavel extends Component
             'email' => 'required|email',
         ]);
 
-        // salvar responsável e alunos (exemplo)
-        // Responsavel::create([...]);
-        // foreach($this->alunos as $aluno) { Aluno::create([...]); }
+        $user_id = User::create([
+            'name' => $this->nome,
+            'email' => $this->email,
+            'password' => Hash::make($this->email),
+            'role' => 'responsavel',
+        ])->id;
+        
+        $id_responsavel = Responsavel::create([
+            'user_id' => $user_id,
+        ])->id;
+
+        foreach ($this->alunos as $aluno) {
+            Aluno::create([
+                'nome' => $aluno['nome'],
+                'data_nascimento' => $aluno['data_nascimento'],
+                'responsavel_id' => $id_responsavel,
+            ]);
+        }
 
         session()->flash('successo', 'Responsável e alunos cadastrados com sucesso!');
         $this->reset(['nome', 'email', 'alunos']);

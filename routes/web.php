@@ -7,6 +7,7 @@ use App\Livewire\CadastroProfessor;
 use App\Livewire\CadastroResponsavel;
 use App\Livewire\CadastroTurma;
 use App\Livewire\DiretoriaDashboard;
+use App\Livewire\ListarAluno;
 use App\Livewire\ListarProfessor;
 use App\Livewire\Login;
 
@@ -19,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cadastrar-turma', CadastroTurma::class)->name('cadastro.turma');
     Route::get('/cadastrar-disciplina', CadastroDisciplina::class)->name('cadastro.disciplina');
     Route::get('/professor/{id}/turmas', ListarProfessor::class)->name('professor.turmas');
+    Route::get('/listar-alunos', ListarAluno::class)->name('listar.alunos');
 });
 
 Route::post('/logout', function () {
