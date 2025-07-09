@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Avaliacao extends Model
 {
-    protected $fillable = ['aluno_id', 'disciplina_id', 'bimestre', 'numero', 'nota', 'observacao'];
+    protected $table = 'avaliacoes';
+
+    protected $fillable = ['aluno_turma_id', 'disciplina_id', 'bimestre', 'numero', 'nota', 'observacao'];
 
     public function alunoTurma()
     {
