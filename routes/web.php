@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckUserRole;
 
 use App\Livewire\Login;
+
 use App\Livewire\Diretoria\ListarAluno;
 use App\Livewire\Diretoria\ListarProfessor;
 use App\Livewire\Diretoria\AssociarAluno;
@@ -13,11 +14,12 @@ use App\Livewire\Diretoria\CadastroTurma;
 use App\Livewire\Diretoria\CadastroProfessor;
 use App\Livewire\Diretoria\CadastroResponsavel;
 use App\Livewire\Diretoria\CadastroDisciplina;
-
 use App\Livewire\Diretoria\DiretoriaDashboard;
 
 use App\Livewire\Professor\ProfessorDashboard;
 use App\Livewire\Professor\LancarNotas;
+
+use App\Livewire\Responsavel\ResponsavelDashboard;
 
 // Página de login
 Route::get('/login', Login::class)->name('login');
@@ -59,9 +61,9 @@ Route::middleware([
 // -----------------------------
 // Rotas do RESPONSÁVEL
 // -----------------------------
-// Route::middleware([
-//     'auth',
-//     CheckUserRole::class . ':responsavel',
-// ])->group(function () {
-//     Route::get('/responsavel/dashboard', ResponsavelDashboard::class)->name('responsavel.dashboard');
-// });
+Route::middleware([
+    'auth',
+    CheckUserRole::class . ':responsavel',
+])->group(function () {
+    Route::get('/responsavel/dashboard', ResponsavelDashboard::class)->name('responsavel.dashboard');
+});
