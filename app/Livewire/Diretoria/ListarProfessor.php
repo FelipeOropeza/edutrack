@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Diretoria;
 
 use App\Models\Professor;
 use Livewire\Attributes\Layout;
@@ -18,6 +18,6 @@ class ListarProfessor extends Component
 
     public function render()
     {
-        return view('livewire.listar-professor');
+        return view('livewire.diretoria.listar-professor');
     }
 }

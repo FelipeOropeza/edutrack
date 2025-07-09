@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Professor;
 
 use App\Models\AlunoTurma;
 use App\Models\Avaliacao;
@@ -118,7 +118,7 @@ class LancarNotas extends Component
 
     public function render()
     {
-        return view('livewire.lancar-notas', [
+        return view('livewire.professor.lancar-notas', [
             'turmas' => $this->turmas,
             'disciplinas' => $this->disciplinas,
             'alunos' => $this->alunos,

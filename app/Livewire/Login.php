@@ -28,7 +28,7 @@ class Login extends Component
             $user = Auth::user();
 
             return match ($user->role) {
-                'diretoria' => redirect()->intended('/dashboard'),
+                'diretoria' => redirect()->intended('/diretoria/dashboard'),
                 'professor' => redirect()->intended('/professor/dashboard'),
                 'responsavel' => redirect()->intended('/responsavel/dashboard'),
                 default => redirect('/login'),

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Diretoria;
 
 use Livewire\Component;
 use App\Models\AlunoTurma;
@@ -18,7 +18,7 @@ class AssociarAluno extends Component
 
     public function render()
     {
-        return view('livewire.associar-aluno', [
+        return view('livewire.diretoria.associar-aluno', [
             'alunos' => Aluno::all(),
             'turmas' => Turma::all(),
         ]);

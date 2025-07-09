@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Diretoria;
 
 use App\Models\Aluno;
 use App\Models\Responsavel;
@@ -66,6 +66,6 @@ class CadastroResponsavel extends Component
 
     public function render()
     {
-        return view('livewire.cadastro-responsavel');
+        return view('livewire.diretoria.cadastro-responsavel');
     }
 }

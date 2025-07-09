@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Professor;
 
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -10,6 +10,6 @@ class ProfessorDashboard extends Component
 {
     public function render()
     {
-        return view('livewire.professor-dashboard');
+        return view('livewire.professor.professor-dashboard');
     }
 }

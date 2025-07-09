@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Diretoria;
 
 use App\Models\Disciplina;
 use App\Models\Professor;
@@ -102,6 +102,6 @@ class CadastroProfessor extends Component
             })
             ->get();
 
-        return view('livewire.cadastro-professor', compact('professores'));
+        return view('livewire.diretoria.cadastro-professor', compact('professores'));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Diretoria;
 
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -10,6 +10,6 @@ class DiretoriaDashboard extends Component
 {
     public function render()
     {
-        return view('livewire.diretoria-dashboard');
+        return view('livewire.diretoria.diretoria-dashboard');
     }
 }

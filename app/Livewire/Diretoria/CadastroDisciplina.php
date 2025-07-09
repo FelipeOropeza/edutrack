@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Diretoria;
 
 use App\Models\Disciplina;
 use Livewire\Attributes\Layout;
@@ -33,6 +33,6 @@ class CadastroDisciplina extends Component
             ->orderBy('nome')
             ->get();
 
-        return view('livewire.cadastro-disciplina', compact('disciplinas'));
+        return view('livewire.diretoria.cadastro-disciplina', compact('disciplinas'));
     }
 }

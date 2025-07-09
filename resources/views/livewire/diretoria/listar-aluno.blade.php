@@ -7,6 +7,7 @@
                 <tr>
                     <th class="py-2 px-4 border-b">Nome</th>
                     <th class="py-2 px-4 border-b">Data de Nascimento</th>
+                    <th class="py-2 px-4 border-b">Turma</th>
                 </tr>
             </thead>
             <tbody>
@@ -14,6 +15,9 @@
                     <tr class="border-t">
                         <td class="py-2 px-4">{{ $aluno->nome }}</td>
                         <td class="py-2 px-4">{{ \Carbon\Carbon::parse($aluno->data_nascimento)->format('d/m/Y') }}</td>
+                        <td class="py-2 px-4">
+                            {{ $aluno->turmas->first()?->nome ?? 'Não está em nenhuma turma' }}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Diretoria;
 
 use App\Models\Turma;
 use Livewire\Attributes\Layout;
@@ -37,6 +37,6 @@ class CadastroTurma extends Component
             ->orderBy('ano_letivo', 'desc')
             ->get();
 
-        return view('livewire.cadastro-turma', compact('turmas'));
+        return view('livewire.diretoria.cadastro-turma', compact('turmas'));
     }
 }
