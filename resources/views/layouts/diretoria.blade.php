@@ -26,6 +26,8 @@
                 Disciplina</a>
             <a href="{{ route('listar.alunos') }}" class="hover:bg-blue-700 px-3 py-2 rounded transition">Listar
                 Alunos</a>
+            <a href="{{ route('associar.aluno') }}" class="hover:bg-blue-700 px-3 py-2 rounded transition">Associar
+                Aluno</a>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Sair</a>
         </nav>
