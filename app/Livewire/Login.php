@@ -24,7 +24,15 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             session()->regenerate();
-            return redirect()->intended('/dashboard');
+
+            $user = Auth::user();
+
+            return match ($user->role) {
+                'diretoria' => redirect()->intended('/dashboard'),
+                'professor' => redirect()->intended('/professor/dashboard'),
+                'responsavel' => redirect()->intended('/responsavel/dashboard'),
+                default => redirect('/login'),
+            };
         }
 
         $this->error = 'Email ou senha inválidos.';
