@@ -16,12 +16,19 @@ class Aluno extends Model
     public function turmas()
     {
         return $this->belongsToMany(Turma::class, 'aluno_turma')
-                    ->withPivot('status')
-                    ->withTimestamps();
+            ->withPivot('status')
+            ->withTimestamps();
     }
 
     public function avaliacoes()
     {
-        return $this->hasMany(Avaliacao::class);
+        return $this->hasManyThrough(
+            Avaliacao::class,
+            AlunoTurma::class,
+            'aluno_id',
+            'aluno_turma_id',
+            'id',
+            'id'
+        );
     }
 }

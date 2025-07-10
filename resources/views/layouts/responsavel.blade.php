@@ -15,7 +15,8 @@
         <nav class="flex flex-col space-y-3">
             <a href="{{ route('responsavel.dashboard') }}"
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Dashboard</a>
-
+            <a href="{{ route('responsavel.ver-notas-filhos') }}"
+                class="hover:bg-blue-700 px-3 py-2 rounded transition">Ver Notas dos Filhos</a>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Sair</a>
         </nav>

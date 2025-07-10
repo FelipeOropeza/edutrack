@@ -20,6 +20,7 @@ use App\Livewire\Professor\ProfessorDashboard;
 use App\Livewire\Professor\LancarNotas;
 
 use App\Livewire\Responsavel\ResponsavelDashboard;
+use App\Livewire\Responsavel\VerNotasFilhos;
 
 // Página de login
 Route::get('/login', Login::class)->name('login');
@@ -66,4 +67,5 @@ Route::middleware([
     CheckUserRole::class . ':responsavel',
 ])->group(function () {
     Route::get('/responsavel/dashboard', ResponsavelDashboard::class)->name('responsavel.dashboard');
+    Route::get('/responsavel/ver-notas-filhos', VerNotasFilhos::class)->name('responsavel.ver-notas-filhos');
 });
