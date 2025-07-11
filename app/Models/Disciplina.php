@@ -23,4 +23,8 @@ class Disciplina extends Model
         return $this->hasMany(ProfessorTurmaDisciplina::class);
     }
 
+    public function faltas()
+    {
+        return $this->hasMany(Falta::class);
+    }
 }

@@ -24,4 +24,9 @@ class AlunoTurma extends Model
     {
         return $this->hasMany(Avaliacao::class);
     }
+
+    public function faltas()
+    {
+        return $this->hasMany(Falta::class);
+    }
 }
