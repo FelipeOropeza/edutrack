@@ -14,6 +14,8 @@
         <h2 class="text-2xl font-bold mb-6">Portal Escolar</h2>
         <nav class="flex flex-col space-y-3">
             <a href="{{ route('diretoria.dashboard') }}" class="hover:bg-blue-700 px-3 py-2 rounded transition">Dashboard</a>
+            <a href="{{ route('cadastro.dia-letivo') }}" class="hover:bg-blue-700 px-3 py-2 rounded transition">Cadastro
+                Dia Letivo</a>
             <a href="{{ route('cadastro.professor') }}" class="hover:bg-blue-700 px-3 py-2 rounded transition">Cadastrar
                 Professor</a>
             <a href="{{ route('cadastro.responsavel') }}"
