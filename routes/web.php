@@ -10,6 +10,7 @@ use App\Livewire\Login;
 use App\Livewire\Diretoria\ListarAluno;
 use App\Livewire\Diretoria\ListarProfessor;
 use App\Livewire\Diretoria\AssociarAluno;
+use App\Livewire\Diretoria\CadastroDiaLetivo;
 use App\Livewire\Diretoria\CadastroTurma;
 use App\Livewire\Diretoria\CadastroProfessor;
 use App\Livewire\Diretoria\CadastroResponsavel;
@@ -18,7 +19,7 @@ use App\Livewire\Diretoria\DiretoriaDashboard;
 
 use App\Livewire\Professor\ProfessorDashboard;
 use App\Livewire\Professor\LancarNotas;
-
+use App\Livewire\Professor\RegistrarFaltas;
 use App\Livewire\Responsavel\ResponsavelDashboard;
 use App\Livewire\Responsavel\VerNotasFilhos;
 
@@ -46,6 +47,7 @@ Route::middleware([
     Route::get('/diretoria/professor/{id}/turmas', ListarProfessor::class)->name('professor.turmas');
     Route::get('/diretoria/listar-alunos', ListarAluno::class)->name('listar.alunos');
     Route::get('/diretoria/associar-aluno', AssociarAluno::class)->name('associar.aluno');
+    Route::get('/diretoria/cadastrar-dia-letivo', CadastroDiaLetivo::class)->name('cadastro.dia-letivo');
 });
 
 // -----------------------------
@@ -57,6 +59,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/professor/dashboard', ProfessorDashboard::class)->name('professor.dashboard');
     Route::get('/professor/lancar-notas', LancarNotas::class)->name('professor.lancar-notas');
+    Route::get('/professor/registrar-faltas', RegistrarFaltas::class)->name('professor.registrar-faltas');
 });
 
 // -----------------------------

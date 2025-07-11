@@ -17,6 +17,8 @@
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Dashboard</a>
             <a href="{{ route('professor.lancar-notas') }}"
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Lançar Notas</a>
+            <a href="{{ route('professor.registrar-faltas') }}"
+                class="hover:bg-blue-700 px-3 py-2 rounded transition">Registrar Faltas</a>
 
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Sair</a>
