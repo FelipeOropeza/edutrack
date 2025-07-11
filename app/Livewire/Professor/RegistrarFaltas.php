@@ -36,6 +36,22 @@ class RegistrarFaltas extends Component
             return;
         }
 
+        $diaLetivo = DiaLetivo::find($this->dia_letivo_id);
+
+        if (!$diaLetivo) {
+            $this->alunos = [];
+            return;
+        }
+
+        $dataDiaLetivo = $diaLetivo->data;
+        $hoje = date('Y-m-d');
+
+        if ($dataDiaLetivo < $hoje) {
+            session()->flash('erro', 'Não é possível registrar faltas para dias passados.');
+            $this->alunos = [];
+            return;
+        }
+
         $this->alunos = AlunoTurma::with('aluno')
             ->where('turma_id', $this->turma_id)
             ->get();
@@ -51,8 +67,24 @@ class RegistrarFaltas extends Component
         }
     }
 
+
     public function salvar()
     {
+        $diaLetivo = DiaLetivo::find($this->dia_letivo_id);
+
+        if (!$diaLetivo) {
+            session()->flash('erro', 'Dia letivo inválido.');
+            return;
+        }
+
+        $dataDiaLetivo = $diaLetivo->data;
+        $hoje = date('Y-m-d');
+
+        if ($dataDiaLetivo < $hoje) {
+            session()->flash('erro', 'Não é possível alterar faltas de dias passados.');
+            return;
+        }
+
         foreach ($this->presencas as $alunoTurmaId => $presente) {
             Falta::where([
                 'aluno_turma_id' => $alunoTurmaId,
@@ -63,6 +95,7 @@ class RegistrarFaltas extends Component
 
         session()->flash('sucesso', 'Frequência salva com sucesso.');
     }
+
 
     public function render()
     {

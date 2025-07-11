@@ -23,7 +23,8 @@ class LancarNotas extends Component
         $usuarioId = Auth::id();
         $professor = Professor::where('user_id', $usuarioId)->first();
 
-        if (!$professor) return collect();
+        if (!$professor)
+            return collect();
 
         return ProfessorTurmaDisciplina::where('professor_id', $professor->id)
             ->with('turma')
@@ -37,7 +38,8 @@ class LancarNotas extends Component
         $usuarioId = Auth::id();
         $professor = Professor::where('user_id', $usuarioId)->first();
 
-        if (!$professor || !$this->turma_id) return collect();
+        if (!$professor || !$this->turma_id)
+            return collect();
 
         return ProfessorTurmaDisciplina::where('professor_id', $professor->id)
             ->where('turma_id', $this->turma_id)
@@ -49,7 +51,8 @@ class LancarNotas extends Component
 
     public function getAlunosProperty()
     {
-        if (!$this->turma_id) return collect();
+        if (!$this->turma_id)
+            return collect();
 
         return AlunoTurma::where('turma_id', $this->turma_id)
             ->with('aluno')
@@ -100,7 +103,8 @@ class LancarNotas extends Component
 
     private function carregarNotas()
     {
-        if (!$this->turma_id || !$this->disciplina_id || !$this->bimestre) return;
+        if (!$this->turma_id || !$this->disciplina_id || !$this->bimestre)
+            return;
 
         $alunoTurmas = AlunoTurma::where('turma_id', $this->turma_id)->get();
 
@@ -115,6 +119,21 @@ class LancarNotas extends Component
             }
         }
     }
+
+    public function calcularMedia($avaliacoes): float
+    {
+        return collect($avaliacoes)->only([1, 2, 3])->avg() ?? 0;
+    }
+
+    public function statusMedia(float $media): array
+    {
+        return match (true) {
+            $media < 5 => ['cor' => 'bg-red-100 text-red-800', 'icone' => '❌'],
+            $media < 7 => ['cor' => 'bg-yellow-100 text-yellow-800', 'icone' => '⚠️'],
+            default => ['cor' => 'bg-green-100 text-green-800', 'icone' => '✅'],
+        };
+    }
+
 
     public function render()
     {

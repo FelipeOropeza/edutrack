@@ -7,6 +7,12 @@
         </div>
     @endif
 
+    @if (session()->has('erro'))
+        <div class="bg-red-100 text-red-800 p-3 rounded mb-4">
+            {{ session('erro') }}
+        </div>
+    @endif
+
     <div class="grid grid-cols-3 gap-4 mb-6">
         <div>
             <label class="block font-semibold mb-1">Data</label>
