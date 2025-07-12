@@ -22,6 +22,7 @@ use App\Livewire\Professor\LancarNotas;
 use App\Livewire\Professor\RegistrarFaltas;
 use App\Livewire\Responsavel\ResponsavelDashboard;
 use App\Livewire\Responsavel\VerNotasFilhos;
+use App\Livewire\Responsavel\VisualizarFaltas;
 
 // Página de login
 Route::get('/login', Login::class)->name('login');
@@ -71,4 +72,5 @@ Route::middleware([
 ])->group(function () {
     Route::get('/responsavel/dashboard', ResponsavelDashboard::class)->name('responsavel.dashboard');
     Route::get('/responsavel/ver-notas-filhos', VerNotasFilhos::class)->name('responsavel.ver-notas-filhos');
+    Route::get('/responsavel/visualizar-faltas', VisualizarFaltas::class)->name('responsavel.visualizar-faltas');
 });

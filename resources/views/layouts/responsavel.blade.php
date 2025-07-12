@@ -17,6 +17,8 @@
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Dashboard</a>
             <a href="{{ route('responsavel.ver-notas-filhos') }}"
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Ver Notas dos Filhos</a>
+            <a href="{{ route('responsavel.visualizar-faltas') }}"
+                class="hover:bg-blue-700 px-3 py-2 rounded transition">Visualizar Faltas</a>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="hover:bg-blue-700 px-3 py-2 rounded transition">Sair</a>
         </nav>
