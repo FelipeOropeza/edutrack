@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Responsavel\ResponsavelController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -73,4 +74,5 @@ Route::middleware([
     Route::get('/responsavel/dashboard', ResponsavelDashboard::class)->name('responsavel.dashboard');
     Route::get('/responsavel/ver-notas-filhos', VerNotasFilhos::class)->name('responsavel.ver-notas-filhos');
     Route::get('/responsavel/visualizar-faltas', VisualizarFaltas::class)->name('responsavel.visualizar-faltas');
+    Route::get('/responsavel/{id}', [ResponsavelController::class, 'gerarPdfNotas'])->name('responsavel.index');
 });

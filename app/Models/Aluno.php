@@ -20,6 +20,12 @@ class Aluno extends Model
             ->withTimestamps();
     }
 
+    public function alunoTurmas()
+    {
+        return $this->hasMany(AlunoTurma::class);
+    }
+
+
     public function avaliacoes()
     {
         return $this->hasManyThrough(
