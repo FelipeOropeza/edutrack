@@ -26,7 +26,11 @@
                 class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded w-full font-semibold transition">Cadastrar</button>
 
             @if (session()->has('message'))
-                <p class="mt-4 text-green-600 font-medium">{{ session('message') }}</p>
+                <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2400)" x-show="show"
+                    x-transition:leave="transition-opacity ease-in duration-500" x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0">
+                    <p x-show="show" class="mt-4 text-green-600 font-medium">{{ session('message') }}</p>
+                </div>
             @endif
         </form>
     </section>

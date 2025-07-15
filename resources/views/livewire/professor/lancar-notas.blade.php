@@ -78,8 +78,11 @@
     @endif
 
     @if (session()->has('message'))
-        <div class="mt-4 bg-green-100 text-green-800 p-3 rounded shadow">
-            {{ session('message') }}
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2400)" x-show="show"
+            x-transition:leave="transition-opacity ease-in duration-500" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" class="mt-4 bg-green-100 text-green-800 p-3 rounded shadow">
+            <p>{{ session('message') }}</p>
         </div>
     @endif
+
 </div>
