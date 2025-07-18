@@ -2,7 +2,8 @@
     <h2 class="text-2xl font-bold mb-4">Cadastro de Dias Letivos</h2>
 
     @if (session()->has('sucesso'))
-        <div class="bg-green-100 text-green-800 p-2 rounded mb-4">
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+            class="bg-green-100 text-green-800 p-2 rounded mb-4">
             {{ session('sucesso') }}
         </div>
     @endif
@@ -11,7 +12,8 @@
         <div>
             <label class="block font-semibold">Data</label>
             <input type="date" wire:model="data" class="w-full border rounded p-2">
-            @error('data') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            @error('data') <span x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+            class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div>
@@ -23,7 +25,8 @@
                 <option value="3">3º Bimestre</option>
                 <option value="4">4º Bimestre</option>
             </select>
-            @error('bimestre') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            @error('bimestre') <span x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+            class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div>

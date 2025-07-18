@@ -1,6 +1,5 @@
 <div>
     <div class="max-w-6xl mx-auto mt-8 flex gap-8 items-start">
-        <!-- Formulário de cadastro -->
         <section class="w-1/3 bg-white p-6 rounded shadow flex flex-col">
             <h2 class="text-2xl font-bold mb-6">Cadastrar Professor</h2>
 
@@ -45,7 +44,6 @@
             </form>
         </section>
 
-        <!-- Listagem de professores -->
         <section class="w-2/3 bg-white p-6 rounded shadow">
             <h2 class="text-2xl font-bold mb-6">Buscar Professores</h2>
 
@@ -61,7 +59,6 @@
                             <p class="text-gray-500 text-xs uppercase tracking-wider">{{ $prof->user->role }}</p>
                         </div>
 
-                        {{-- Ações: Vincular e Visualizar --}}
                         <div class="flex gap-2">
                             <button wire:click="abrirModalVincular({{ $prof->id }})"
                                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold text-sm transition"
@@ -97,7 +94,8 @@
                     <option value="{{ $turma->id }}">{{ $turma->nome }} ({{ $turma->ano_letivo }})</option>
                 @endforeach
             </select>
-            @error('turma_id') <p class="text-red-600 text-sm mb-4">{{ $message }}</p> @enderror
+            @error('turma_id') <p x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+            class="text-red-600 text-sm mb-4">{{ $message }}</p> @enderror
 
             <select wire:model="disciplina_id" class="w-full border rounded px-3 py-2 mb-4">
                 <option value="">-- Selecione a disciplina --</option>
@@ -105,7 +103,8 @@
                     <option value="{{ $disciplina->id }}">{{ $disciplina->nome }}</option>
                 @endforeach
             </select>
-            @error('disciplina_id') <p class="text-red-600 text-sm mb-4">{{ $message }}</p> @enderror
+            @error('disciplina_id') <p x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)"
+            x-show="show" class="text-red-600 text-sm mb-4">{{ $message }}</p> @enderror
 
             <div class="flex justify-end gap-4">
                 <button @click="open = false"

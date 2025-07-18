@@ -10,6 +10,8 @@
                     <option value="{{ $aluno->id }}">{{ $aluno->nome }}</option>
                 @endforeach
             </select>
+            @error('aluno_id') <span x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+            class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div class="mb-4">
@@ -20,6 +22,8 @@
                     <option value="{{ $turma->id }}">{{ $turma->nome }} - {{ $turma->ano_letivo }}</option>
                 @endforeach
             </select>
+            @error('turma_id') <span x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+            class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" type="submit">

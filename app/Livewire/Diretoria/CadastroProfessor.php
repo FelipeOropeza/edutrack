@@ -48,7 +48,6 @@ class CadastroProfessor extends Component
             'disciplina_id' => 'required|exists:disciplinas,id',
         ]);
 
-        // Evita duplicidade no vínculo
         $exists = ProfessorTurmaDisciplina::where([
             'professor_id' => $this->professorSelecionado,
             'turma_id' => $this->turma_id,
