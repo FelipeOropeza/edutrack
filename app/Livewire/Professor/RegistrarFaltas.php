@@ -8,6 +8,8 @@ use App\Models\Disciplina;
 use App\Models\Turma;
 use App\Models\AlunoTurma;
 use App\Models\Falta;
+use App\Models\ProfessorTurmaDisciplina;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 
 #[Layout('layouts.professor')]
@@ -32,23 +34,27 @@ class RegistrarFaltas extends Component
         $this->reset(['alunos', 'presencas']);
 
         if (!$this->dia_letivo_id || !$this->turma_id || !$this->disciplina_id) {
-            $this->alunos = [];
             return;
         }
 
         $diaLetivo = DiaLetivo::find($this->dia_letivo_id);
+        if (!$diaLetivo) return;
 
-        if (!$diaLetivo) {
-            $this->alunos = [];
+        $hoje = date('Y-m-d');
+        if ($diaLetivo->data !== $hoje) {
+            session()->flash('erro', 'Só é permitido registrar faltas na data atual.');
             return;
         }
 
-        $dataDiaLetivo = $diaLetivo->data;
-        $hoje = date('Y-m-d');
+        $professorId = Auth::user()->professor->id;
+        $temPermissao = ProfessorTurmaDisciplina::where([
+            'professor_id' => $professorId,
+            'turma_id' => $this->turma_id,
+            'disciplina_id' => $this->disciplina_id,
+        ])->exists();
 
-        if ($dataDiaLetivo < $hoje) {
-            session()->flash('erro', 'Não é possível registrar faltas para dias passados.');
-            $this->alunos = [];
+        if (!$temPermissao) {
+            session()->flash('erro', 'Acesso negado. Essa turma/disciplina não está associada a você.');
             return;
         }
 
@@ -67,21 +73,29 @@ class RegistrarFaltas extends Component
         }
     }
 
-
     public function salvar()
     {
         $diaLetivo = DiaLetivo::find($this->dia_letivo_id);
-
         if (!$diaLetivo) {
             session()->flash('erro', 'Dia letivo inválido.');
             return;
         }
 
-        $dataDiaLetivo = $diaLetivo->data;
         $hoje = date('Y-m-d');
+        if ($diaLetivo->data !== $hoje) {
+            session()->flash('erro', 'Só é permitido registrar faltas na data atual.');
+            return;
+        }
 
-        if ($dataDiaLetivo < $hoje) {
-            session()->flash('erro', 'Não é possível alterar faltas de dias passados.');
+        $professorId = Auth::user()->professor->id;
+        $temPermissao = ProfessorTurmaDisciplina::where([
+            'professor_id' => $professorId,
+            'turma_id' => $this->turma_id,
+            'disciplina_id' => $this->disciplina_id,
+        ])->exists();
+
+        if (!$temPermissao) {
+            session()->flash('erro', 'Acesso negado.');
             return;
         }
 
@@ -96,13 +110,19 @@ class RegistrarFaltas extends Component
         session()->flash('sucesso', 'Frequência salva com sucesso.');
     }
 
-
     public function render()
     {
+        $professorId = Auth::user()->professor->id;
+
+        $vinculos = ProfessorTurmaDisciplina::where('professor_id', $professorId)->get();
+
+        $turmas = Turma::whereIn('id', $vinculos->pluck('turma_id')->unique())->get();
+        $disciplinas = Disciplina::whereIn('id', $vinculos->pluck('disciplina_id')->unique())->get();
+
         return view('livewire.professor.registrar-faltas', [
             'diasLetivos' => DiaLetivo::orderBy('data')->get(),
-            'turmas' => Turma::all(),
-            'disciplinas' => Disciplina::all(),
+            'turmas' => $turmas,
+            'disciplinas' => $disciplinas,
         ]);
     }
 }
