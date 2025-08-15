@@ -82,8 +82,13 @@
 
     </div>
 
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 
-    <div x-data="{ open: @entangle('modalAberto') }" x-show="open"
+    <div x-data="{ open: @entangle('modalAberto') }" x-show="open" x-cloak
         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white p-6 rounded shadow-lg w-96 max-w-full">
             <h3 class="text-xl font-semibold mb-4">Vincular Professor</h3>
@@ -94,8 +99,10 @@
                     <option value="{{ $turma->id }}">{{ $turma->nome }} ({{ $turma->ano_letivo }})</option>
                 @endforeach
             </select>
-            @error('turma_id') <p x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
-            class="text-red-600 text-sm mb-4">{{ $message }}</p> @enderror
+            @error('turma_id')
+                <p x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+                    class="text-red-600 text-sm mb-4">{{ $message }}</p>
+            @enderror
 
             <select wire:model="disciplina_id" class="w-full border rounded px-3 py-2 mb-4">
                 <option value="">-- Selecione a disciplina --</option>
@@ -103,8 +110,10 @@
                     <option value="{{ $disciplina->id }}">{{ $disciplina->nome }}</option>
                 @endforeach
             </select>
-            @error('disciplina_id') <p x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)"
-            x-show="show" class="text-red-600 text-sm mb-4">{{ $message }}</p> @enderror
+            @error('disciplina_id')
+                <p x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
+                    class="text-red-600 text-sm mb-4">{{ $message }}</p>
+            @enderror
 
             <div class="flex justify-end gap-4">
                 <button @click="open = false"
@@ -116,4 +125,5 @@
             </div>
         </div>
     </div>
+
 </div>
