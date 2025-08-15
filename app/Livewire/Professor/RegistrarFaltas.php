@@ -41,6 +41,7 @@ class RegistrarFaltas extends Component
         if (!$diaLetivo) return;
 
         $hoje = date('Y-m-d');
+
         if ($diaLetivo->data !== $hoje) {
             session()->flash('erro', 'Só é permitido registrar faltas na data atual.');
             return;
